@@ -29,3 +29,8 @@
     - name: Show output of Command 2
       debug:
         var: result_command2.stdout
+
+    - name: This is checking "{{ command1 }}"
+      run: | 
+        date
+        uptime

@@ -1,0 +1,23 @@
+---
+- name: Run Commands based on Input
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Execute Command 1
+      shell: "{{ command1 }}"
+      register: result_command1
+      ignore_errors: yes
+
+    - name: Show output of Command 1
+      debug:
+        var: result_command1.stdout
+
+    - name: Execute Command 2
+      shell: "{{ command2 }}"
+      register: result_command2
+      ignore_errors: yes
+
+    - name: Show output of Command 2
+      debug:
+        var: result_command2.stdout

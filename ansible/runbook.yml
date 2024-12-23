@@ -9,6 +9,10 @@
       register: result_command1
       ignore_errors: yes
 
+    - name: Showing  of Command 1
+      debug:
+        msg: "{{ command1 }}"
+
     - name: Show output of Command 1
       debug:
         var: result_command1.stdout
@@ -17,6 +21,10 @@
       shell: "{{ command2 }}"
       register: result_command2
       ignore_errors: yes
+
+    - name: Showing  of Command 2
+      debug:
+        msg: "{{ command2 }}"
 
     - name: Show output of Command 2
       debug:

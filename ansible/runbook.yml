@@ -30,7 +30,7 @@
       debug:
         var: result_command2.stdout
 
-    - name: This is checking "{{ command1 }}"
-      run: | 
+    - name: This is checking {{ command1 }}
+      shell: | 
         date
         uptime

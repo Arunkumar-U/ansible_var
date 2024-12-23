@@ -1,0 +1,41 @@
+name: Run Ansible Playbook with Commands
+
+on:
+  workflow_dispatch:
+    inputs:
+      command1:
+        description: 'Choose the first command'
+        required: true
+        type: choice
+        options:
+          - 'date'
+          - 'uptime'
+          - 'whoami'
+        default: 'date'
+      command2:
+        description: 'Choose the second command'
+        required: true
+        type: choice
+        options:
+          - 'id'
+          - 'systemctl status httpd'
+          - 'who'
+        default: 'id'
+
+jobs:
+  run-playbook:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Ansible
+      uses: shivammathur/setup-ansible@v2
+      with:
+        version: '2.10'
+
+    - name: Run Ansible Playbook
+      run: |
+        ansible-playbook ansible/runbook.yml \
+          --extra-vars "command1=${{ github.event.inputs.command1 }} command2=${{ github.event.inputs.command2 }}"
